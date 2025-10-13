@@ -1,0 +1,49 @@
+[package]
+name = "module-system-demo"
+version = "0.1.0"
+edition = "2021"
+authors = ["Rust Learning <rust-learning@example.com>"]
+license = "MIT OR Apache-2.0"
+description = "Demonstration of Rust module system and package management"
+keywords = ["rust", "modules", "demo"]
+categories = ["development-tools"]
+
+# 库配置
+[lib]
+name = "module_system_demo"
+path = "src/lib.rs"
+
+# 二进制示例
+[[bin]]
+name = "demo"
+path = "src/bin/demo.rs"
+
+# 示例程序
+[[example]]
+name = "basic_usage"
+path = "examples/basic_usage.rs"
+
+[[example]]
+name = "advanced_features"
+path = "examples/advanced_features.rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"], optional = true }
+chrono = { version = "0.4", features = ["serde"], optional = true }
+log = { version = "0.4", optional = true }
+serde_json = { version = "1.0", optional = true }
+toml = { version = "0.8", optional = true }
+
+[dev-dependencies]
+env_logger = "0.10"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "benchmarks"
+harness = false
+
+[features]
+default = ["std"]
+std = []
+serde_support = ["dep:serde", "dep:chrono", "dep:serde_json", "dep:toml"]
+logging = ["dep:log"]

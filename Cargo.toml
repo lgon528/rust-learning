@@ -1,0 +1,93 @@
+[workspace]
+members = [
+    "examples/stage1-basics/structs-enums-demo",
+    "examples/stage1-basics/collections-demo",
+    "examples/stage1-basics/error-handling-demo",
+    "examples/stage1-basics/lifetimes-demo", "examples/stage1-basics/generics-traits-demo", "examples/stage1-basics/advanced-error-handling-demo", "examples/stage1-basics/module-system-demo", "examples/stage1-basics/syntax-demo", "examples/stage1-basics/control-flow-demo", "examples/stage1-basics/ownership-intro-demo", "examples/stage1-basics/comparisons-demo", "examples/stage1-basics/environment-demo",
+]
+
+resolver = "2"
+
+[workspace.dependencies]
+# 通用依赖
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clap = { version = "4.0", features = ["derive"] }
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Web开发相关
+axum = "0.7"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "trace"] }
+hyper = { version = "1.0", features = ["full"] }
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid"] }
+
+# 系统编程相关
+libc = "0.2"
+nix = "0.27"
+memmap2 = "0.9"
+
+# 区块链相关
+sha2 = "0.10"
+secp256k1 = "0.28"
+rand = "0.8"
+
+# 测试和开发工具
+criterion = "0.5"
+proptest = "1.0"
+mockall = "0.12"
+
+# 实用工具
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+regex = "1.0"
+once_cell = "1.0"
+dashmap = "5.0"
+
+[profile.dev]
+opt-level = 0
+debug = true
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = 'unwind'
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.release]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = 'abort'
+incremental = false
+codegen-units = 1
+rpath = false
+
+[profile.test]
+opt-level = 0
+debug = true
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = 'unwind'
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.bench]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = 'abort'
+incremental = false
+codegen-units = 1
+rpath = false
