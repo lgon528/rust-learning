@@ -95,13 +95,13 @@ pub fn to_snake_case(s: &str) -> String {
                     prev_char.is_lowercase() ||
                     // 从连续大写字母转到新单词开始（如 XMLHttp 中的 H）
                     (prev_char.is_uppercase() && 
-                     next_char.map_or(false, |nc| nc.is_lowercase()));
+                     next_char.is_some_and(|nc| nc.is_lowercase()));
                 
                 if should_add_underscore {
                     result.push('_');
                 }
             }
-            result.push(c.to_lowercase().next().unwrap_or(c));
+            result.extend(c.to_lowercase());
         } else {
             result.push(c);
         }
@@ -165,8 +165,8 @@ fn levenshtein_distance(s1: &str, s2: &str) -> usize {
     let mut matrix = vec![vec![0; len2 + 1]; len1 + 1];
     
     // 初始化第一行和第一列
-    for i in 0..=len1 {
-        matrix[i][0] = i;
+    for (i, item) in matrix.iter_mut().enumerate().take(len1 + 1) {
+        item[0] = i;
     }
     for j in 0..=len2 {
         matrix[0][j] = j;
@@ -254,7 +254,7 @@ mod tests {
     #[test]
     fn test_safe_parse_number() {
         assert_eq!(safe_parse_number::<i32>("123").unwrap(), 123);
-        assert_eq!(safe_parse_number::<f64>("3.14").unwrap(), 3.14);
+        assert_eq!(safe_parse_number::<f64>("3.141592653589793").unwrap(), std::f64::consts::PI);
         assert!(safe_parse_number::<i32>("abc").is_err());
     }
 

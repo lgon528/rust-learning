@@ -14,8 +14,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     // 1. 配置管理
     println!("\n--- 配置管理 ---");
-    let mut config = Config::default();
-    config.environment = Environment::Development;
+    let config = Config {
+        environment: Environment::Development,
+        ..Config::default()
+    };
     println!("应用名称: {}", config.app_name);
     println!("环境: {:?}", config.environment);
     println!("是否为开发环境: {}", config.is_development());

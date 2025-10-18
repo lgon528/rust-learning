@@ -9,10 +9,6 @@ use module_system_demo::{
     NAME, VERSION,
     LibError,
 };
-
-#[cfg(feature = "serde_support")]
-use module_system_demo::serialization::Serializable;
-
 use std::sync::Arc;
 use std::thread;
 use std::time::Duration;
@@ -94,7 +90,7 @@ fn test_string_utilities() {
     
     // 测试字符串相似度
     let similarity = string_utils::string_similarity("hello", "hallo");
-    assert!(similarity >= 0.0 && similarity <= 1.0);
+    assert!((0.0..=1.0).contains(&similarity));
 }
 
 #[test]

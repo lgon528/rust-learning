@@ -74,10 +74,7 @@ pub struct UtilsInfo {
 
 // 私有辅助函数
 fn get_enabled_features() -> Vec<String> {
-    let mut features = Vec::new();
-    
-    // 默认功能
-    features.push("core".to_string());
+    let features = vec!["core".to_string()];
     
     #[cfg(feature = "serde_support")]
     features.push("serde_support".to_string());

@@ -175,6 +175,7 @@ impl Server {
     }
 
     /// 获取配置（包内可见）
+    #[allow(dead_code)]
     pub(crate) fn config(&self) -> &NetworkConfig {
         &self.config
     }

@@ -144,11 +144,10 @@ pub fn validate_url(url: &str) -> ValidationResult<()> {
     }
     
     // 检查是否有域名部分
-    let without_protocol = if url.starts_with("https://") {
-        &url[8..]
-    } else {
-        &url[7..]
-    };
+    let without_protocol = url
+        .strip_prefix("https://")
+        .or_else(|| url.strip_prefix("http://"))
+        .unwrap();
     
     if without_protocol.is_empty() {
         return Err(ValidationError::InvalidUrl(url.to_string()));

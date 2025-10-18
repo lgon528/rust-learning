@@ -1,0 +1,28 @@
+[package]
+name = "progress-tracker"
+version = "0.1.0"
+edition = "2021"
+description = "Rust 学习进度跟踪系统"
+authors = ["Rust Learning Team"]
+license = "MIT"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"], optional = true }
+serde_json = { version = "1.0", optional = true }
+chrono = { version = "0.4", features = ["serde"] }
+
+[dev-dependencies]
+tempfile = "3.8"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[features]
+default = ["serde_support"]
+serde_support = ["serde", "serde_json"]
+
+[[bench]]
+name = "performance_benchmarks"
+harness = false
+
+[[bench]]
+name = "simple_benchmarks"
+harness = false

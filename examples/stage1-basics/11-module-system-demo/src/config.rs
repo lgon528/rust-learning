@@ -5,11 +5,11 @@
 use crate::{LibError, Result};
 use std::collections::HashMap;
 use std::env;
-// use std::fs;
-// use std::path::Path;
 
 #[cfg(feature = "serde_support")]
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "serde_support")]
+use std::{fs, path::Path};
 
 /// 应用程序配置
 #[derive(Debug, Clone)]
@@ -32,18 +32,13 @@ pub struct Config {
 }
 
 /// 环境类型
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Default)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum Environment {
+    #[default]
     Development,
     Production,
     Test,
-}
-
-impl Default for Environment {
-    fn default() -> Self {
-        Environment::Development
-    }
 }
 
 impl std::str::FromStr for Environment {
@@ -103,50 +98,35 @@ pub struct LoggingConfig {
 }
 
 /// 日志级别
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Default)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum LogLevel {
     Error,
     Warn,
+    #[default]
     Info,
     Debug,
     Trace,
 }
 
-impl Default for LogLevel {
-    fn default() -> Self {
-        LogLevel::Info
-    }
-}
-
 /// 日志输出目标
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum LogOutput {
+    #[default]
     Console,
     File(String),
     Both { file: String },
 }
 
-impl Default for LogOutput {
-    fn default() -> Self {
-        LogOutput::Console
-    }
-}
-
 /// 日志格式
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum LogFormat {
+    #[default]
     Simple,
     Json,
     Detailed,
-}
-
-impl Default for LogFormat {
-    fn default() -> Self {
-        LogFormat::Simple
-    }
 }
 
 impl Default for LoggingConfig {
@@ -510,8 +490,10 @@ mod tests {
 
     #[test]
     fn test_config_helpers() {
-        let mut config = Config::default();
-        config.environment = Environment::Production;
+        let config = Config {
+            environment: Environment::Production,
+            ..Default::default()
+        };
         
         assert!(config.is_production());
         assert!(!config.is_development());

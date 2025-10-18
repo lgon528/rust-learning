@@ -31,10 +31,8 @@ use module_system_demo::{
 
 // 条件导入：只在特定功能启用时导入
 #[cfg(feature = "serde_support")]
-use module_system_demo::serialization::Serializable;
-
 #[cfg(feature = "logging")]
-use log::{info, warn, error, debug};
+use log::{info};
 
 /// 应用程序状态管理
 #[derive(Debug)]
@@ -191,14 +189,14 @@ fn demo_network_management(app_state: &mut AppState) -> Result<(), Box<dyn std::
     println!("服务器初始状态: {:?}", server.status());
     
     // 启动服务器
-    if let Ok(_) = server.start() {
+    if server.start().is_ok() {
         println!("服务器启动成功");
         network_manager.active_connections.insert("server".to_string(), server.status());
         app_state.metrics.connections_made += 1;
     }
     
     // 连接客户端
-    if let Ok(_) = client.connect() {
+    if client.connect().is_ok() {
         println!("客户端连接成功");
         network_manager.active_connections.insert("client".to_string(), client.status());
         app_state.metrics.connections_made += 1;
@@ -206,7 +204,7 @@ fn demo_network_management(app_state: &mut AppState) -> Result<(), Box<dyn std::
     
     // 发送数据
     let test_message = b"Hello from advanced demo!";
-    if let Ok(_) = client.send(test_message) {
+    if client.send(test_message).is_ok() {
         println!("消息发送成功: {:?}", std::str::from_utf8(test_message));
         app_state.metrics.messages_sent += 1;
     }

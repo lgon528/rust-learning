@@ -407,13 +407,19 @@ pub struct RecommendationService {
     cache: Arc<Mutex<HashMap<String, Vec<String>>>>,
 }
 
-impl RecommendationService {
-    pub fn new() -> Self {
+impl Default for RecommendationService {
+    fn default() -> Self {
         Self {
             primary_client: HttpClient::new("https://api.primary.com"),
             fallback_client: HttpClient::new("https://api.fallback.com"),
             cache: Arc::new(Mutex::new(HashMap::new())),
         }
+    }
+}
+
+impl RecommendationService {
+    pub fn new() -> Self {
+        Self::default()
     }
     
     /// 获取推荐，支持多级降级
@@ -489,9 +495,7 @@ impl HttpClient {
     pub async fn get_recommendations(&self, user_id: &str) -> Result<Vec<String>, NetworkError> {
         let url = format!("{}/recommendations/{}", self.base_url, user_id);
         
-        self.circuit_breaker.call(|| async {
-            self.make_request(&url).await
-        }).await.map_err(|e| match e {
+        self.circuit_breaker.call(|| self.make_request(&url)).await.map_err(|e| match e {
             CircuitBreakerError::CircuitOpen => NetworkError::ServerError { status: 503 },
             CircuitBreakerError::OperationFailed(err) => err,
         })
@@ -591,11 +595,17 @@ pub struct UserService {
     error_logger: ErrorLogger,
 }
 
-impl UserService {
-    pub fn new() -> Self {
+impl Default for UserService {
+    fn default() -> Self {
         Self {
             error_logger: ErrorLogger::new("user-service"),
         }
+    }
+}
+
+impl UserService {
+    pub fn new() -> Self {
+        Self::default()
     }
     
     /// 数据访问层 - 模拟数据库操作

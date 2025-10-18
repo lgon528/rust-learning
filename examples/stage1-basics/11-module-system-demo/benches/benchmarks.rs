@@ -65,12 +65,10 @@ fn bench_string_utils(c: &mut Criterion) {
     }
     
     // 字符串相似度基准测试
-    let string_pairs = vec![
-        ("hello", "hallo"),
+    let string_pairs = [("hello", "hallo"),
         ("programming", "programing"),
         ("rust", "trust"),
-        ("benchmark", "benchmrk"),
-    ];
+        ("benchmark", "benchmrk")];
     
     for (i, (s1, s2)) in string_pairs.iter().enumerate() {
         group.bench_with_input(
@@ -89,20 +87,18 @@ fn bench_time_utils(c: &mut Criterion) {
     
     // 时间戳生成基准测试
     group.bench_function("current_timestamp", |b| {
-        b.iter(|| current_timestamp())
+        b.iter(current_timestamp)
     });
     
     group.bench_function("current_timestamp_millis", |b| {
-        b.iter(|| current_timestamp_millis())
+        b.iter(current_timestamp_millis)
     });
     
     // 持续时间格式化基准测试
-    let durations = vec![
-        Duration::from_secs(30),
+    let durations = [Duration::from_secs(30),
         Duration::from_secs(90),
         Duration::from_secs(3661),
-        Duration::from_secs(86461),
-    ];
+        Duration::from_secs(86461)];
     
     for (i, duration) in durations.iter().enumerate() {
         group.bench_with_input(
@@ -155,12 +151,10 @@ fn bench_validation_utils(c: &mut Criterion) {
     let mut group = c.benchmark_group("validation_utils");
     
     // 邮箱验证基准测试
-    let emails = vec![
-        "user@example.com",
+    let emails = ["user@example.com",
         "test.email+tag@domain.co.uk",
         "invalid-email",
-        "very.long.email.address.with.many.dots@very.long.domain.name.com",
-    ];
+        "very.long.email.address.with.many.dots@very.long.domain.name.com"];
     
     for (i, email) in emails.iter().enumerate() {
         group.bench_with_input(
@@ -171,12 +165,10 @@ fn bench_validation_utils(c: &mut Criterion) {
     }
     
     // URL验证基准测试
-    let urls = vec![
-        "https://www.example.com",
+    let urls = ["https://www.example.com",
         "http://localhost:8080/path/to/resource?param=value",
         "ftp://files.example.com",
-        "invalid-url",
-    ];
+        "invalid-url"];
     
     for (i, url) in urls.iter().enumerate() {
         group.bench_with_input(
@@ -188,11 +180,9 @@ fn bench_validation_utils(c: &mut Criterion) {
     
     // 长度验证基准测试
     let long_string = "very_long_string".repeat(100);
-    let test_strings = vec![
-        "short",
+    let test_strings = ["short",
         "medium_length_string",
-        &long_string,
-    ];
+        &long_string];
     
     for (i, s) in test_strings.iter().enumerate() {
         group.bench_with_input(
@@ -203,7 +193,7 @@ fn bench_validation_utils(c: &mut Criterion) {
     }
     
     // 数值范围验证基准测试
-    let test_values = vec![1, 50, 100, 999];
+    let test_values = [1, 50, 100, 999];
     
     for (i, value) in test_values.iter().enumerate() {
         group.bench_with_input(
@@ -215,7 +205,7 @@ fn bench_validation_utils(c: &mut Criterion) {
     
     // 模式验证基准测试
     let email_pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-    let test_emails = vec![
+    let test_emails = [
         "user@example.com",
         "invalid-email",
         "test@domain.co.uk",
@@ -238,7 +228,7 @@ fn bench_config_management(c: &mut Criterion) {
     
     // 默认配置创建基准测试
     group.bench_function("config_default", |b| {
-        b.iter(|| Config::default())
+        b.iter(Config::default)
     });
     
     // 配置构建器基准测试
@@ -264,7 +254,7 @@ fn bench_config_management(c: &mut Criterion) {
     
     // 环境变量加载基准测试（注意：这可能会失败，但我们测试性能）
     group.bench_function("config_from_env", |b| {
-        b.iter(|| Config::from_env())
+        b.iter(Config::from_env)
     });
     
     group.finish();
@@ -360,7 +350,7 @@ fn bench_integrated_workflow(c: &mut Criterion) {
     });
     
     // 批量验证基准测试
-    let test_emails = vec![
+    let test_emails = [
         "user1@example.com",
         "user2@test.org",
         "invalid-email-1",

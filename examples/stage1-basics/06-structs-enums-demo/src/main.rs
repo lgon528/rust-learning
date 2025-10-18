@@ -86,7 +86,7 @@ impl Color {
     fn _green(&self) -> u8 { self.1 }
     fn _blue(&self) -> u8 { self.2 }
     
-    fn to_hex(&self) -> String {
+    fn as_hex(&self) -> String {
         format!("#{:02X}{:02X}{:02X}", self.0, self.1, self.2)
     }
 }
@@ -115,7 +115,7 @@ impl Message {
             Message::Quit => println!("收到退出消息"),
             Message::Move { x, y } => println!("移动到坐标 ({}, {})", x, y),
             Message::Write(text) => println!("写入消息: {}", text),
-            Message::ChangeColor(color) => println!("改变颜色为: {}", color.to_hex()),
+            Message::ChangeColor(color) => println!("改变颜色为: {}", color.as_hex()),
         }
     }
     
@@ -418,7 +418,7 @@ fn demonstrate_basic_structs() {
     
     // 元组结构体
     let red = Color::new(255, 0, 0);
-    println!("红色: {:?}, 十六进制: {}", red, red.to_hex());
+    println!("红色: {:?}, 十六进制: {}", red, red.as_hex());
     
     // 单元结构体
     let _always_equal = AlwaysEqual;
@@ -467,7 +467,7 @@ fn demonstrate_user_management() {
     let mut manager = UserManager::new();
     
     // 创建用户
-    let user_ids = vec![
+    let user_ids = [
         manager.create_user("alice".to_string(), "alice@example.com".to_string()),
         manager.create_user("bob".to_string(), "bob@example.com".to_string()),
         manager.create_user("charlie".to_string(), "invalid-email".to_string()),
@@ -503,7 +503,7 @@ fn demonstrate_user_management() {
 
 fn demonstrate_option_result() {
     // Option 示例
-    let numbers = vec![1, 2, 3, 4, 5];
+    let numbers = [1, 2, 3, 4, 5];
     
     // 安全的索引访问
     match numbers.get(2) {
@@ -605,7 +605,7 @@ mod tests {
         assert_eq!(red._red(), 255);
         assert_eq!(red._green(), 0);
         assert_eq!(red._blue(), 0);
-        assert_eq!(red.to_hex(), "#FF0000");
+        assert_eq!(red.as_hex(), "#FF0000");
     }
     
     #[test]

@@ -115,8 +115,10 @@ impl DurationBreakdown {
             milliseconds,
         }
     }
-    
-    pub fn to_string(&self) -> String {
+}
+
+impl std::fmt::Display for DurationBreakdown {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let mut parts = Vec::new();
         
         if self.days > 0 {
@@ -136,9 +138,9 @@ impl DurationBreakdown {
         }
         
         if parts.is_empty() {
-            "0ms".to_string()
+            write!(f, "0ms")
         } else {
-            parts.join(" ")
+            write!(f, "{}", parts.join(" "))
         }
     }
 }
@@ -147,6 +149,7 @@ impl DurationBreakdown {
 #[derive(Debug)]
 pub struct Timer {
     start_time: SystemTime,
+    #[allow(dead_code)]
     name: String,
 }
 

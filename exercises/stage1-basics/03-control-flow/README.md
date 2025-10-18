@@ -1,16 +1,20 @@
-# 练习：控制流
+# 练习 3：控制流
 
-这个练习将帮助你熟悉 Rust 的控制流结构，包括：
+## 目标
 
-1.  **条件表达式**：学习如何使用 `if`、`else if` 和 `else`。
-2.  **循环**：学习如何使用 `loop`、`while` 和 `for`。
-3.  **模式匹配**：学习如何使用 `match` 进行模式匹配。
+练习 Rust 的控制流结构，包括 `if` 表达式和 `loop` 循环。
 
 ## 任务
 
-- [ ] 创建一个新项目 `control-flow-practice`。
-- [ ] 编写一个函数，接收一个整数，并根据其大小打印不同的消息（例如，“小于 5”、“等于 5” 或 “大于 5”）。
-- [ ] 使用 `loop` 循环打印从 1 到 5 的数字，并在数字为 3 时跳过打印。
-- [ ] 使用 `while` 循环实现一个倒计时程序。
-- [ ] 使用 `for` 循环遍历一个数组并打印每个元素。
-- [ ] 编写一个函数，使用 `match` 匹配一个 `Option<i32>` 类型，并根据 `Some` 或 `None` 打印不同的消息。
+1.  打开 `exercises/stage1-basics/03-control-flow/exercise/src/main.rs` 文件。
+2.  修改 `main` 函数，使其包含以下内容：
+    *   一个名为 `number` 的变量，并将其初始化为 `3`。
+    *   一个 `if-else` 表达式，检查 `number` 是否小于 `5`。如果是，则打印 "condition was true"；否则，打印 "condition was false"。
+    *   一个 `loop`，它将一个计数器从 `0` 增加到 `10`。当计数器达到 `10` 时，循环应使用 `break` 关键字返回计数器的两倍。
+    *   在 `loop` 之后，添加对 `println!` 宏的调用，以打印 `loop` 的结果。
+3.  使用 `cargo run -p exercise` 运行项目，并验证输出是否正确。
+
+## 验收标准
+
+-   `cargo run -p exercise` 命令执行成功，没有任何错误。
+-   控制台输出 "condition was true" 和 `loop` 的结果（`20`）。

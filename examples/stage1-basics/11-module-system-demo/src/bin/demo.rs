@@ -254,22 +254,16 @@ fn demo_conditional_features() {
     println!("--- 条件编译功能演示 ---");
 
     // 检查启用的功能
-    let mut features = Vec::new();
+    let features = [
+        #[cfg(feature = "std")]
+        "std",
+        #[cfg(feature = "serde_support")]
+        "serde_support",
+        #[cfg(feature = "logging")]
+        "logging",
+    ];
     
-    #[cfg(feature = "std")]
-    features.push("std");
-    
-    #[cfg(feature = "serde_support")]
-    features.push("serde_support");
-    
-    #[cfg(feature = "logging")]
-    features.push("logging");
-    
-    if features.is_empty() {
-        println!("当前没有启用可选功能");
-    } else {
-        println!("启用的功能: {}", features.join(", "));
-    }
+    println!("启用的可选功能: {:?}", features);
 
     // 演示 serde 功能（如果启用）
     #[cfg(feature = "serde_support")]

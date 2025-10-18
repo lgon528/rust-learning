@@ -1,0 +1,104 @@
+{
+  "learner_id": "测试用户",
+  "learner_name": "测试用户",
+  "learning_units": [
+    {
+      "id": "stage1-environment",
+      "name": "环境搭建与基础配置",
+      "unit_type": "ContentReading",
+      "stage": "Stage1Basics",
+      "path": "content/stage1-basics/01-environment",
+      "estimated_time_minutes": 60,
+      "status": "NotStarted",
+      "started_at": null,
+      "completed_at": null,
+      "score": null,
+      "notes": null
+    },
+    {
+      "id": "stage1-syntax",
+      "name": "基本语法与数据类型",
+      "unit_type": "ContentReading",
+      "stage": "Stage1Basics",
+      "path": "content/stage1-basics/02-syntax",
+      "estimated_time_minutes": 120,
+      "status": "NotStarted",
+      "started_at": null,
+      "completed_at": null,
+      "score": null,
+      "notes": null
+    },
+    {
+      "id": "stage1-syntax-demo",
+      "name": "语法演示代码",
+      "unit_type": "CodeExample",
+      "stage": "Stage1Basics",
+      "path": "examples/stage1-basics/02-syntax-demo",
+      "estimated_time_minutes": 45,
+      "status": "NotStarted",
+      "started_at": null,
+      "completed_at": null,
+      "score": null,
+      "notes": null
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first_steps",
+      "name": "初次尝试",
+      "description": "完成第一个学习单元",
+      "icon": "🎯",
+      "condition": {
+        "CompleteUnits": {
+          "count": 1,
+          "unit_type": null
+        }
+      },
+      "unlocked_at": null,
+      "rarity": "Common"
+    },
+    {
+      "id": "stage1_master",
+      "name": "基础大师",
+      "description": "完成阶段1所有内容",
+      "icon": "🌟",
+      "condition": {
+        "CompleteStage": {
+          "stage": "Stage1Basics"
+        }
+      },
+      "unlocked_at": null,
+      "rarity": "Rare"
+    },
+    {
+      "id": "code_warrior",
+      "name": "代码战士",
+      "description": "完成10个代码示例",
+      "icon": "⚔️",
+      "condition": {
+        "CompleteUnits": {
+          "count": 10,
+          "unit_type": "CodeExample"
+        }
+      },
+      "unlocked_at": null,
+      "rarity": "Epic"
+    },
+    {
+      "id": "perfect_student",
+      "name": "完美学生",
+      "description": "连续5个练习得分90分以上",
+      "icon": "🏆",
+      "condition": {
+        "ScoreAverage": {
+          "min_score": 90.0,
+          "unit_count": 5
+        }
+      },
+      "unlocked_at": null,
+      "rarity": "Legendary"
+    }
+  ],
+  "created_at": "2025-10-14T17:46:41.725745Z",
+  "last_updated": "2025-10-14T17:46:41.725874Z"
+}

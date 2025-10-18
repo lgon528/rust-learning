@@ -57,8 +57,8 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 }
 
 /// 演示多个生命周期参数
-fn first_word<'a, 'b>(s: &'a str, _separator: &'b str) -> &'a str {
-    s.split_whitespace().next().unwrap_or("")
+fn first_word<'a>(s: &'a str, separator: &str) -> &'a str {
+    s.split(separator).next().unwrap_or("")
 }
 
 /// 演示生命周期省略规则
@@ -142,12 +142,9 @@ fn complex_lifetime_demo() {
 fn iterator_lifetime_demo() {
     println!("\n=== 生命周期与迭代器 ===");
     
-    let data = vec!["apple", "banana", "cherry"];
+    let data = ["apple", "banana", "cherry"];
     
-    // 迭代器保持对原始数据的引用
-    let mut iter = data.iter();
-    
-    while let Some(item) = iter.next() {
+    for item in data {
         println!("水果: {}", item);
     }
     
@@ -173,8 +170,7 @@ fn common_lifetime_errors_demo() {
     
     // 2. 正确的做法：返回拥有的值
     fn valid_function() -> String {
-        let s = String::from("hello");
-        s  // 正确：返回拥有的值
+        String::from("hello")  // 正确：返回拥有的值
     }
     
     let owned_string = valid_function();
