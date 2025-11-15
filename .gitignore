@@ -67,3 +67,8 @@ lcov.info
 progress.json
 my-notes.md
 personal-*.md
+vendor
+site
+venv
+
+.catpaw

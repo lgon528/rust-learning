@@ -1,0 +1,10 @@
+# 本地开发专用配置文件
+# 继承主配置，只覆盖必要的设置
+
+INHERIT: mkdocs.yml
+
+# 覆盖site_url为本地地址
+site_url: http://127.0.0.1:8002/rust-learning/
+
+# 本地开发特定配置
+strict: false  # 在开发模式下不那么严格

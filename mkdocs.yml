@@ -1,0 +1,138 @@
+site_name: Rust Learning Guide
+site_url: https://lgon528.github.io/rust-learning/
+repo_url: https://github.com/lgon528/rust-learning
+repo_name: lgon528/rust-learning
+edit_uri: edit/main/
+docs_dir: content/
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.highlight:
+      linenums: true
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: 'mermaid2.fence_mermaid'
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search:
+      lang: zh
+
+nav:
+  - 首页: README.md
+  - 阶段一：Rust基础:
+    - 阶段介绍: stage1-basics/README.md
+    - 开发环境:
+      - 安装配置: stage1-basics/01-environment/01-installation.md
+      - 开发工具: stage1-basics/01-environment/02-dev-tools.md
+      - Hello World: stage1-basics/01-environment/03-hello-world.md
+      - Cargo基础: stage1-basics/01-environment/04-cargo-basics.md
+    - 基本语法:
+      - 变量与数据类型: stage1-basics/02-syntax/01-variables.md
+      - 数据类型详解: stage1-basics/02-syntax/02-data-types.md
+      - 函数基础: stage1-basics/02-syntax/03-functions.md
+      - 注释: stage1-basics/02-syntax/04-comments.md
+    - 控制流:
+      - 条件语句: stage1-basics/03-control-flow/01-conditionals.md
+      - 循环结构: stage1-basics/03-control-flow/02-loops.md
+      - 模式匹配: stage1-basics/03-control-flow/03-pattern-matching.md
+    - 所有权入门:
+      - 所有权基础: stage1-basics/04-ownership-intro/01-ownership-basics.md
+      - 引用与借用: stage1-basics/04-ownership-intro/02-references-borrowing.md
+      - 切片: stage1-basics/04-ownership-intro/03-slices.md
+      - 生命周期: stage1-basics/04-ownership-intro/04-lifetimes.md
+    - 数据类型比较: stage1-basics/05-comparisons/01-rust-vs-cpp.md
+    - 结构体与枚举:
+      - 结构体定义: stage1-basics/06-structs-enums/01-struct-definition.md
+      - 方法与关联函数: stage1-basics/06-structs-enums/02-methods-associated-functions.md
+      - 枚举定义: stage1-basics/06-structs-enums/03-enum-definition.md
+      - 模式匹配: stage1-basics/06-structs-enums/04-pattern-matching.md
+      - 高级特性: stage1-basics/06-structs-enums/05-advanced-features.md
+    - 集合类型:
+      - 向量: stage1-basics/07-collections/01-vectors.md
+      - 哈希映射: stage1-basics/07-collections/02-hashmaps.md
+      - 其他集合: stage1-basics/07-collections/03-other-collections.md
+    - 错误处理基础:
+      - 不可恢复错误: stage1-basics/08-error-handling/01-panic-unrecoverable.md
+      - 可恢复错误: stage1-basics/08-error-handling/02-result-recoverable.md
+      - 高级错误处理: stage1-basics/08-error-handling/03-advanced-error-handling.md
+    - 泛型与特征:
+      - 泛型基础: stage1-basics/09-generics-traits/01-generics-basics.md
+      - 特征: stage1-basics/09-generics-traits/02-traits.md
+      - 生命周期: stage1-basics/09-generics-traits/03-lifetimes.md
+    - 高级错误处理:
+      - 自定义错误类型: stage1-basics/10-advanced-error-handling/01-custom-error-types.md
+      - 错误处理库: stage1-basics/10-advanced-error-handling/02-error-handling-libraries.md
+      - 错误传播与恢复: stage1-basics/10-advanced-error-handling/03-error-propagation-recovery.md
+    - 模块系统:
+      - 模块基础: stage1-basics/11-module-system/01-module-basics.md
+      - Cargo包管理: stage1-basics/11-module-system/02-cargo-package-management.md
+      - 工作空间: stage1-basics/11-module-system/03-workspace-multi-package.md
+    - 学习资源: stage1-basics/12-learning-resources.md
+  - 阶段二：深入所有权:
+    - 所有权概念: stage2-ownership/01-ownership-concepts.md
+    - 借用与引用: stage2-ownership/02-borrowing-and-references.md
+    - 切片: stage2-ownership/03-slices.md
+  - 阶段三：高级概念:
+    - 结构体: stage3-advanced-concepts/01-structs.md
+    - 枚举: stage3-advanced-concepts/02-enums.md
+    - 错误处理: stage3-advanced-concepts/03-error-handling.md
+  - 阶段四：Rust生态:
+    - Cargo与包: stage4-ecosystem/01-cargo-and-crates.md
+    - 常用库: stage4-ecosystem/02-common-libraries.md
+    - Web框架: stage4-ecosystem/03-web-frameworks.md
+  - 阶段五：实战项目:
+    - Axum Web应用: stage5-projects/01-axum-web-app.md
+    - 系统编程CLI: stage5-projects/02-system-programming-cli.md
+    - 区块链演示: stage5-projects/03-blockchain-demo.md

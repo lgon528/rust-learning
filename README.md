@@ -1,5 +1,8 @@
 # Rust Learning Project
 
+[![View on GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-View%20Documentation-blue?style=flat-square&logo=github)](https://lgon528.github.io/rust-learning/)
+[![Local Development](https://img.shields.io/badge/Local%20Dev-Ready%20to%20Run-green?style=flat-square)](/LOCAL_DEVELOPMENT.md)
+
 一个全面的 Rust 学习项目，包含系统化的学习内容、实践示例、练习题目和实际项目。本项目旨在帮助开发者从零开始掌握 Rust 编程语言，并能够应用到实际的系统编程和 Web 开发中。
 
 ## 🎯 项目目标
@@ -43,9 +46,31 @@ rust-learning/
 
 ## 🚀 快速开始
 
+### 🌐 在线访问
+
+- **GitHub Pages**: https://lgon528.github.io/rust-learning/
+- **文档完整版**: 包含所有学习内容和示例
+
+### 💻 本地开发
+
+详细的本地开发指南请查看 [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md)
+
+**快速启动**:
+```bash
+# 方式一：使用本地配置文件
+source venv/bin/activate
+mkdocs serve -f mkdocs.local.yml --dev-addr=127.0.0.1:8002 --livereload
+
+# 方式二：使用便捷脚本
+./serve-local.sh
+
+# 访问地址: http://127.0.0.1:8002/rust-learning/
+```
+
 ### 环境要求
 
 - Rust 1.70+ (推荐使用最新稳定版)
+- Python 3.13+ (用于文档构建)
 - Cargo (Rust 包管理器)
 - Git (版本控制)
 
@@ -55,6 +80,13 @@ rust-learning/
    ```bash
    git clone <repository-url>
    cd rust-learning
+   ```
+
+2. **设置文档环境**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
    ```
 
 2. **验证 Rust 环境**
