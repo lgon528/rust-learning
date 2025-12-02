@@ -1,6 +1,14 @@
 [package]
 name = "system-programming-cli"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
+# CLI framework
+clap = { version = "4.4", features = ["derive", "color"] }
+
+# File system operations
+walkdir = "2.4"
+
+[dev-dependencies]
+cargo-test = "0.1"
